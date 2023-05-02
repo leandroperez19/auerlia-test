@@ -1,0 +1,21 @@
+<template>
+  <require from="./styles.css"></require>
+  <div class="container">
+    <form submit.trigger="addTask()">
+      <label for="taskInpt">Type your task</label>
+      <div class="inputs">
+        <input type="text" name="task" id="taskInpt" value.bind="taskDescription">
+        <button type="submit" disabled.bind="!taskDescription" css="opacity: ${!taskDescription ? .4 : 1}" >Add task</button>
+      </div>
+    </form>
+    <div class="tasks">
+      <div class="task" repeat.for="task of tasks">
+        <div class="info">
+          <input type="checkbox" checked.bind="task.done">
+          <span css="text-decoration: ${task.done ? 'line-through' : 'none'}">${task.description}</span>
+        </div>
+        <button click.trigger="removeTask(task)">Delete Task</button>
+      </div>
+    </div>
+  </div>
+</template>
